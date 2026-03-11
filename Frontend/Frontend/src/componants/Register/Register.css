@@ -2,32 +2,33 @@
   max-width: 350px;
   margin: 50px auto;
   padding: 15px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(29, 28, 30, 0.738);
   border-radius: 8px;
+  backdrop-filter: blur(3px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
   position: relative;
   z-index: 1;
 }
 
-.register-container::before {
+/* .register-container::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(211, 132, 238, 0.623);
+  background-color: rgba(29, 28, 30, 0.738);
   background-size: cover;
   background-position: center;
-  filter: blur(5px);
+  backdrop-filter: blur(3px);
   z-index: -1;
   border-radius: 8px;
-}
+} */
 
 .register-container h1 {
   text-align: center;
-  color: #333;
+  color: #fff;
   margin-bottom: 20px;
 }
 

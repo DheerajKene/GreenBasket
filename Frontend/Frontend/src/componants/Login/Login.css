@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://wallpaperaccess.com/full/4002079.jpg');
+  background-size: cover;
+  backdrop-filter: blur(2px);
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+.login-container {
+  max-width: 350px;
+  margin: 100px auto;
+  padding: 20px;
+  background: rgba(29, 28, 30, 0.738);
+  border-radius: 10px;
+  box-shadow: 10px 10px 16px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  font-size: 12px;
+  color: #fff;
+  position: relative;
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ccc;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.captcha-display {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.captcha-code {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-right: 10px;
+  letter-spacing: 2px;
+}
+
+.refresh-btn {
+  background: #555;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: background 0.3s ease;
+}
+
+.refresh-btn:hover {
+  background: #777;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.checkbox-group input {
+  margin-right: 8px;
+}
+
+.checkbox-group label {
+  margin: 0;
+  color: #ccc;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #45a049;
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    margin: 50px 20px;
+    padding: 15px;
+  }
+}
