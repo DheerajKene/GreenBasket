@@ -7,6 +7,7 @@ import Help from './componants/Help/Help'
 import Register from './componants/Register/Register'
 import Login from './componants/Login/Login'
 import Cart from './componants/Cart/Cart'
+import About from './componants/About/About'
 import Navbar from './componants/DashNavBar/Navbar'
 
 const Allroutes = () => {
