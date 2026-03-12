@@ -11,6 +11,7 @@
   background: transparent;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .nav-links {
@@ -30,6 +31,12 @@
   color: #4CAF50;
 }
 
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .auth {
   display: flex;
   gap: 10px;
@@ -45,5 +52,16 @@
 }
 
 .auth a:hover {
+  color: #4CAF50;
+}
+
+.cart-logo {
+  font-size: 24px;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.cart-logo:hover {
   color: #4CAF50;
 }

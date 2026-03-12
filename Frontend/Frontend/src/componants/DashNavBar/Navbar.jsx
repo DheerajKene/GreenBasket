@@ -10,8 +10,11 @@ const Navbar = () => {
         <Link to="/contact">Contact</Link>
         <Link to="/help">Help</Link>
       </nav>
-      <div className="auth">
-        <Link to="/register">Register</Link> / <Link to="/login">Login</Link>
+      <div className="navbar-right">
+        <div className="auth">
+          <Link to="/register">Register</Link> / <Link to="/login">Login</Link>
+        </div>
+        <Link to="/cart" className="cart-logo">🛒</Link>
       </div>
     </div>
   )

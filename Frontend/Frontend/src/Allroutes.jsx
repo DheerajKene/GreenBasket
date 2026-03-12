@@ -6,6 +6,7 @@ import Contact from './componants/Contact/Contact'
 import Help from './componants/Help/Help'
 import Register from './componants/Register/Register'
 import Login from './componants/Login/Login'
+import Cart from './componants/Cart/Cart'
 import Navbar from './componants/DashNavBar/Navbar'
 
 const Allroutes = () => {
