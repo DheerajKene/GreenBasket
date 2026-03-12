@@ -32,6 +32,7 @@ const Allroutes = () => {
         <Routes>
             <Route path='/' element={showSplash ? <Splash /> : <Dashboard />}/>
             <Route path='/Dashboard' element={<Dashboard/>}></Route>
+            <Route path='/About' element={<About/>}> </Route>
             <Route path='/contact' element={<Contact/>}></Route>
             <Route path='/help' element={<Help/>}></Route>
             <Route path='/register' element={<Register/>}></Route>
