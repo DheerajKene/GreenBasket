@@ -10,7 +10,7 @@ const Cart = () => {
       category: 'Fruits',
       weight: '2 kg',
       price: 150,
-      image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150&h=150&fit=crop'
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ const Cart = () => {
       category: 'Vegetables',
       weight: '1 kg',
       price: 80,
-      image: 'https://images.unsplash.com/photo-1546470427-e9e85214c3b?w=150&h=150&fit=crop'
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
     },
     {
       id: 3,
@@ -26,7 +26,7 @@ const Cart = () => {
       category: 'Dairy',
       weight: '1 liter',
       price: 60,
-      image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=150&h=150&fit=crop'
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
     },
     {
       id: 4,
@@ -34,7 +34,7 @@ const Cart = () => {
       category: 'Fruits',
       weight: '6 nos',
       price: 45,
-      image: 'https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?w=150&h=150&fit=crop'
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
     }
   ])
 
