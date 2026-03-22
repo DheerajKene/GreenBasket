@@ -8,27 +8,41 @@ const saltrounds = 5;
 
 //Registering the user
 userRouter.post("/register", async (req, res)=>{
-    const {FirstName, LastName, Mobile, Password, ConfirmPassword} = req.body;
+    const {FirstName, LastName, Mobile, Password, ConfirmPassword} = req.body || {};
+    console.log(req.body);
+
+    if (!FirstName || !LastName || !Mobile || !Password || !ConfirmPassword) {
+        return res.status(400).json({ message: "Missing required registration credentials" });
+    }
+
+    if (Password !== ConfirmPassword) {
+        return res.status(400).json({ message: "Password and ConfirmPassword must match" });
+    }
+    const usr = await UserModel.findOne({Mobile, FirstName, LastName});
+    if(usr){
+        return res.status(500).json({message:`User has already registered`});
+    }
+
     try {
         bcrypt.hash(Password, saltrounds , async function(err, hash) {
 
-    if(err){
-        return res.status(500).json({
-            message:`Error hashing password: ${err.message}`
-        })
-    }else{
-        const user = new UserModel({
-            FirstName,
-            LastName,
-            Mobile,
-            Password:hash,
-            ConfirmPassword:hash
-        });
-        await user.save();
-        res.status(201).json({
-            message:"User registered seccessfully"
-        })
-    }});
+        if(err){
+            return res.status(500).json({
+                message:`Error hashing password: ${err.message}`
+            })
+        }else{
+            const user = new UserModel({
+                FirstName,
+                LastName,
+                Mobile,
+                Password:hash,
+                ConfirmPassword:hash
+            });
+            await user.save();
+            res.status(201).json({
+                message:"User registered seccessfully"
+            })
+        }});
         
     } catch (error) {
         res.status(500).json({
@@ -41,8 +55,12 @@ userRouter.post("/register", async (req, res)=>{
 //Login the user
 userRouter.post("/login", async (req, res)=>{
     const {Mobile, Password} = req.body;
+
+    if (!Mobile || !Password) {
+        return res.status(400).json({ message: "Mobile and Password are required" });
+    }
     try {
-        const user = await UserModel.findOne({Mobile, Password});
+        const user = await UserModel.findOne({ Mobile });
         if(!user){
             return res.status(401).json({
                 message:"Invalid creadentials"

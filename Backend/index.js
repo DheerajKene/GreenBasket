@@ -5,8 +5,8 @@ const userRouter = require("./routes/user.route");
 const connection = require("./config/db");
 
 const App = express();
-App.use('/user', userRouter);
 App.use(express.json());
+App.use('/user', userRouter);
 
 App.get('/', (req, res)=>{
     res.send('welcomme to the home page...')
