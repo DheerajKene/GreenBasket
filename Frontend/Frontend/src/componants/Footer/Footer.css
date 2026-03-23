@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
   background-color: #4CAF50;
   color: white;
   padding: 40px 20px 20px;
@@ -80,6 +80,69 @@
 }
 
 /* Responsive */
+
+
+#MainDiv{
+ 
+    width: 100%;
+    height: 400px;
+    bottom: 0px;
+    margin-top: 30px;
+    background-color: rgb(230,230,230);
+}
+.subDiv{
+
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+.subDiv div{
+    width: 250px;
+    height: 100%;
+}
+
+.subDiv div ul li a{
+    text-decoration: none;
+    font-family: Candara;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    color: rgb(13, 4, 4);
+}
+.subDiv div ul li{
+    list-style: none;
+}
+.subDiv div ul{
+    margin-top: 30px;
+}
+.subDiv div ul input{
+    width: 111%;
+    height: 24px;
+}
+.subDiv div ul button{
+    width: 241px;
+    height: 33px;
+    margin-top: 12px;
+    color: white;
+    background-color: black;
+    font-weight: 500;
+}
+.sub2Div{
+    text-align: center;
+}
+.sub2Div img{
+    width: 200px;
+    height: 100px;
+    margin-top: 30px;
+}
+.sub2Div h6{
+   font-family: Candara;
+   font-weight: 500;
+}
+
+
+/* Responsive */
+
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
@@ -89,4 +152,4 @@
   .footer-section h3 {
     border-bottom: none;
   }
-}
+} 
