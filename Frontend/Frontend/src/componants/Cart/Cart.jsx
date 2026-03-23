@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './Cart.css'
 
-const Cart = () => {
+const Cart = ({ initialItems }) => {
   // Sample cart data - in real app, this would come from state management or API
-  const [cartItems, setCartItems] = useState([
+  const defaultItems = [
     {
       id: 1,
       name: 'Fresh Apples',
@@ -36,7 +36,9 @@ const Cart = () => {
       price: 45,
       image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
     }
-  ])
+  ]
+
+  const [cartItems, setCartItems] = useState(initialItems ?? defaultItems)
 
   const deleteItem = (id) => {
     setCartItems(cartItems.filter(item => item.id !== id))

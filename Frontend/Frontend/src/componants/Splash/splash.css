@@ -74,7 +74,6 @@ position: fixed;
   margin-right: auto;
   width: 50%;
   animation: pop 2.8s ease;
-  background-image: url('./logobg.png');
   background-size: 100% 100%;
   background-position: center;
   margin-top: 30px;

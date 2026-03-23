@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import{Routes, Route, useLocation} from 'react-router-dom'
-import Splash from './componants/Splash/Splash'
+// import Splash from './componants/Splash/Splash'
 import Dashboard from './componants/Dashboard/Dashboard'
 import Contact from './componants/Contact/Contact'
 import Help from './componants/Help/Help'
@@ -11,31 +11,32 @@ import About from './componants/About/About'
 import Navbar from './componants/DashNavBar/Navbar'
 
 const Allroutes = () => {
-  const [showSplash, setShowSplash] = useState(true);
-  const location = useLocation();
+  // const [showSplash, setShowSplash] = useState(true);
+  // const location = useLocation();
 
-  useEffect(() => {
-    const visited = localStorage.getItem('visited');
-    if (visited) {
-      setShowSplash(false);
-    } else {
-      const timer = setTimeout(() => {
-        localStorage.setItem('visited', 'true');
-        setShowSplash(false);
-      }, 8000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const visited = localStorage.getItem('visited');
+  //   if (visited) {
+  //     setShowSplash(false);
+  //   } else {
+  //     const timer = setTimeout(() => {
+  //       localStorage.setItem('visited', 'true');
+  //       setShowSplash(false);
+  //     }, 8000);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, []);
 
   return (
     <>
-        {!(location.pathname === '/' && showSplash) && <Navbar />}
+        {/* {!(location.pathname === '/' && showSplash) && <Navbar />} */}
         <Routes>
-            <Route path='/' element={showSplash ? <Splash /> : <Dashboard />}/>
+            {/* <Route path='/' element={showSplash ? <Splash /> : <Dashboard />}/> */}
             <Route path='/Dashboard' element={<Dashboard/>}></Route>
             <Route path='/About' element={<About/>}> </Route>
             <Route path='/contact' element={<Contact/>}></Route>
             <Route path='/help' element={<Help/>}></Route>
+            <Route path='/cart' element={<Cart/>}></Route>
             <Route path='/register' element={<Register/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
         </Routes>

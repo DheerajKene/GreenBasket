@@ -1,0 +1,58 @@
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:80px;
+  background:linear-gradient(to right,#e8f5e9,#ffffff);
+}
+
+.hero-left{
+  width:50%;
+}
+
+.hero-left h1{
+  font-size:48px;
+}
+
+.hero-left span{
+  color:#2e7d32;
+}
+
+.hero-left h2{
+  color:#ff7a00;
+  margin:10px 0;
+}
+
+.hero-left p{
+  margin:20px 0;
+  font-size:18px;
+}
+
+.hero-buttons button{
+  padding:12px 24px;
+  margin-right:15px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+.shop{
+  background:#2e7d32;
+  color:white;
+}
+
+.sell{
+  border:1px solid green;
+  background:white;
+}
+
+.features{
+  margin-top:20px;
+  display:flex;
+  gap:20px;
+}
+
+.hero-right img{
+  width:500px;
+  border-radius:10px;
+}
