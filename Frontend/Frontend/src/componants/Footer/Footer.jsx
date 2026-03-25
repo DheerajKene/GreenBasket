@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css'
-import logo from "../DashNavBar/greebasket.png"
+import logo from "../DashNavBar/greenbasket.png"
 
 const Footer = () => {
   return (
@@ -49,7 +49,7 @@ const Footer = () => {
     //     <p>&copy; 2026 GreenBasket. All rights reserved. | Privacy Concern: We respect your privacy and protect your data.</p>
     //   </div>
     // </footer>
-    <div>
+    <div id="footer">
         <div id='MainDiv'>
             <div className="subDiv">
                 <div>

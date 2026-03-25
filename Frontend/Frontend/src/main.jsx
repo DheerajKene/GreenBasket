@@ -4,10 +4,14 @@ import {BrowserRouter} from 'react-router-dom'
 import{Routes, Route} from 'react-router-dom'
 import Splash from './componants/Splash/Splash.jsx'
 import App from './App.jsx'
+import { AuthContextProvider } from './Context/AuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App/>
-  </BrowserRouter>
+  <AuthContextProvider>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
+  </AuthContextProvider>
+  
     
 )

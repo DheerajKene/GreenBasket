@@ -13,15 +13,9 @@ function App() {
   return (
     <>
     <Allroutes/>
-    <div className="App">
+
 
       <Navbar />
-
-      <Hero />
-
-      <Categories />
-
-    </div>
     <Footer />
     </>
   )

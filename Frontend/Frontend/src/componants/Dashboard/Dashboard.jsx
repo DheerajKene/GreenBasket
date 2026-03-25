@@ -1,12 +1,14 @@
 import React from 'react'
 import Navbar from '../DashNavBar/Navbar'
+import Hero from '../Hero/Hero'
+import Categories from '../Categories/Categories'
 
 const Dashboard = () => {
   return (
     <div>
       <Navbar />
-      <h1>Dashboard</h1>
-      <p>Welcome to your GreenBasket Dashboard!</p>
+      <Hero/>
+      <Categories/>
     </div>
   )
 }
