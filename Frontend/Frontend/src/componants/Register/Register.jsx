@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 import './Register.css'
 
@@ -13,6 +13,16 @@ const Register = () => {
   })
 
   const [errors, setErrors] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+  const [toast, setToast] = useState({ show: false, message: '', type: '' })
+  const navigate = useNavigate()
+
+  const showToast = (message, type = 'success') => {
+    setToast({ show: true, message, type })
+    setTimeout(() => {
+      setToast({ show: false, message: '', type: '' })
+    }, 3000)
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -34,21 +44,52 @@ const Register = () => {
     return newErrors
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const validationErrors = validateForm()
     if (Object.keys(validationErrors).length === 0) {
-      // Handle registration logic here (e.g., API call)
-      console.log('Registration data:', formData)
-      alert('Registration successful!')
-      // Reset form
-      setFormData({
-        firstName: '',
-        lastName: '',
-        mobile: '',
-        password: '',
-        confirmPassword: ''
-      })
+      setIsLoading(true)
+
+      try {
+        const response = await fetch('http://localhost:8100/user/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            FirstName: formData.firstName,
+            LastName: formData.lastName,
+            Mobile: formData.mobile,
+            Password: formData.password,
+            ConfirmPassword: formData.confirmPassword
+          })
+        })
+
+        const data = await response.json()
+
+        if (response.ok) {
+          showToast('Registration successful!', 'success')
+          // Reset form
+          setFormData({
+            firstName: '',
+            lastName: '',
+            mobile: '',
+            password: '',
+            confirmPassword: ''
+          })
+          // Redirect to login page after a short delay
+          setTimeout(() => {
+            navigate('/login')
+          }, 1500)
+        } else {
+          showToast(data.message || 'Registration failed', 'error')
+        }
+      } catch (error) {
+        console.error('Registration error:', error)
+        showToast('Network error. Please try again.', 'error')
+      } finally {
+        setIsLoading(false)
+      }
     } else {
       setErrors(validationErrors)
     }
@@ -107,7 +148,7 @@ const Register = () => {
           {errors.password && <div className="error">{errors.password}</div>}
         </div>
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Passwor</label>
           <input
             type="password"
             id="confirmPassword"
@@ -118,8 +159,16 @@ const Register = () => {
           />
           {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
         </div>
-        <button type="submit" className="register-btn">Register</button>
+        <button type="submit" className="register-btn" disabled={isLoading}>
+          {isLoading ? 'Registering...' : 'Register'}
+        </button>
       </form>
+
+      {toast.show && (
+        <div className={`toast toast-${toast.type}`}>
+          {toast.message}
+        </div>
+      )}
     </div>
   )
 }

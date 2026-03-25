@@ -4,10 +4,6 @@ html, body {
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 #root {
   min-height: 100vh;
 }

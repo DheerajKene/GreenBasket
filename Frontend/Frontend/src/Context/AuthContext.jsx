@@ -14,18 +14,17 @@ export const AuthContextProvider = ({children})=>{
             isAuthenticated:true,
             Mobile,
             Token
-        });
+        });   
 
+    }
     const logout = ()=>{
         setAuthDetails({
             isAuthenticated:false,
             Mobile:null,
             Token:null
-        })
-    }    
-
-    }
+        });
+    } 
 
     
-    return <AuthContext.Provider value={{login, logout, AuthDetails}}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{AuthDetails, login, logout}}>{children}</AuthContext.Provider>
 }
