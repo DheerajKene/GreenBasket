@@ -1,9 +1,23 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './NavBar.css'
 import logo from "../DashNavBar/greenbasket.png"
 
 const Navbar = () => {
+  const [showDropdown, setShowDropdown] = useState(false)
+  const navigate = useNavigate()
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown)
+  }
+
+  const handleSignOut = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    setShowDropdown(false)
+    navigate('/login')
+  }
+
   return (
     <div className='navbar'>
       <div className="navbar-left">
@@ -21,6 +35,24 @@ const Navbar = () => {
           <NavLink to="/login" className="login">Login</NavLink>
         </div>
         <NavLink to="/cart" className="cart-logo">🛒</NavLink>
+        <div className="avatar-container">
+          <div className="avatar" onClick={toggleDropdown}>
+            👤
+          </div>
+          {showDropdown && (
+            <div className="dropdown-menu">
+              <NavLink to="/account" className="dropdown-item" onClick={() => setShowDropdown(false)}>
+                My Account
+              </NavLink>
+              <button 
+                className="dropdown-item signout-btn" 
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
