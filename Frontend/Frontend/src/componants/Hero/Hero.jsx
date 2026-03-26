@@ -31,7 +31,7 @@ function Hero() {
       </div>
 
       <div className="hero-right">
-        <img src="/images/farmer.jpg" alt="farmer" />
+        <img src="https://thumbs.dreamstime.com/b/vegetables-growing-crop-farm-illustration-fruits-baskets-vibrant-assortment-fresh-successful-vegetables-growing-crop-farm-319349565.jpg" alt="farmer" />
       </div>
 
     </section>
