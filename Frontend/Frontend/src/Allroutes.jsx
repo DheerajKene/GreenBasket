@@ -8,6 +8,7 @@ import Register from './componants/Register/Register'
 import Login from './componants/Login/Login'
 import Cart from './componants/Cart/Cart'
 import About from './componants/About/About'
+import MyAccount from './pages/MyAccount'
 import Navbar from './componants/DashNavBar/Navbar'
 
 const Allroutes = () => {
@@ -37,6 +38,7 @@ const Allroutes = () => {
             <Route path='/contact' element={<Contact/>}></Route>
             <Route path='/help' element={<Help/>}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
+            <Route path='/account' element={<MyAccount/>}></Route>
             <Route path='/register' element={<Register/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
         </Routes>
