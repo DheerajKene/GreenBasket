@@ -1,6 +1,11 @@
+const { url } = require('inspector');
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+    Avatar:{
+        type:String,
+        unique:true
+    },
     FirstName:{
         type:String,
         required:true
