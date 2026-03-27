@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import{Routes, Route, useLocation} from 'react-router-dom'
 // import Splash from './componants/Splash/Splash'
-import Dashboard from './componants/Dashboard/Dashboard'
+import Dashboard from './componants/Dashboard/dashboard'
 import Contact from './componants/Contact/Contact'
 import Help from './componants/Help/Help'
 import Register from './componants/Register/Register'
@@ -9,6 +9,7 @@ import Login from './componants/Login/Login'
 import Cart from './componants/Cart/Cart'
 import About from './componants/About/About'
 import MyAccount from './pages/MyAccount'
+import ExploreProducts from './pages/ExploreProducts'
 import Navbar from './componants/DashNavBar/Navbar'
 
 const Allroutes = () => {
@@ -39,6 +40,7 @@ const Allroutes = () => {
             <Route path='/help' element={<Help/>}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
             <Route path='/account' element={<MyAccount/>}></Route>
+            <Route path='/explore' element={<ExploreProducts/>}></Route>
             <Route path='/register' element={<Register/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
         </Routes>

@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../DashNavBar/Navbar'
 import Hero from '../Hero/Hero'
 import Categories from '../Categories/Categories'
+import ExploreProducts from '../../pages/ExploreProducts'
 
 const Dashboard = () => {
   return (
@@ -9,6 +10,7 @@ const Dashboard = () => {
       <Navbar />
       <Hero/>
       <Categories/>
+      <ExploreProducts/>
     </div>
   )
 }
