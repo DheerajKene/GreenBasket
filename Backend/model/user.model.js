@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
     Avatar:{
         type:String,
+        mrequired:true,
         unique:true
     },
     FirstName:{
