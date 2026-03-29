@@ -24,7 +24,7 @@ const authenticateToken = (req, res, next) => {
 
 // Upload a new product by logged-in user
 productRouter.post('/upload', authenticateToken, async (req, res) => {
-    const { img, category, name_of_product, price, product_description } = req.body || {};
+    const { img, category, name_of_product, price, product_description } = req.body;
 
     if (!img || !category || !name_of_product || !price || !product_description) {
         return res.status(400).json({ message: 'Missing required product fields' });

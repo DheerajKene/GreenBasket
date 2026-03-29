@@ -8,7 +8,7 @@ const saltrounds = 5;
 
 //Registering the user
 userRouter.post("/register", async (req, res)=>{
-    const {FirstName, LastName, Mobile, Password, ConfirmPassword} = req.body || {};
+    const {FirstName, LastName, Mobile, Password, ConfirmPassword} = req.body;
     console.log("Registration request body:", req.body);
 
     if (!FirstName || !LastName || !Mobile || !Password || !ConfirmPassword) {
