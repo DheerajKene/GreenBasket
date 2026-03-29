@@ -16,7 +16,7 @@ App.get('/', (req, res)=>{
     res.send('welcomme to the home page...')
 });
 
-App.get("/cart", (req, res)=>{
+App.post("/cart", (req, res)=>{
     res.send("welcome to the cart page...")
 });
 
