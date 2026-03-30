@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Cart.css'
 
 const Cart = ({ initialItems }) => {
@@ -35,13 +35,124 @@ const Cart = ({ initialItems }) => {
       weight: '6 nos',
       price: 45,
       image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 1,
+      name: 'Fresh Apples',
+      category: 'Fruits',
+      weight: '2 kg',
+      price: 150,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 2,
+      name: 'Organic Tomatoes',
+      category: 'Vegetables',
+      weight: '1 kg',
+      price: 80,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 3,
+      name: 'Fresh Milk',
+      category: 'Dairy',
+      weight: '1 liter',
+      price: 60,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 4,
+      name: 'Bananas',
+      category: 'Fruits',
+      weight: '6 nos',
+      price: 45,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 1,
+      name: 'Fresh Apples',
+      category: 'Fruits',
+      weight: '2 kg',
+      price: 150,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 2,
+      name: 'Organic Tomatoes',
+      category: 'Vegetables',
+      weight: '1 kg',
+      price: 80,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 3,
+      name: 'Fresh Milk',
+      category: 'Dairy',
+      weight: '1 liter',
+      price: 60,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 4,
+      name: 'Bananas',
+      category: 'Fruits',
+      weight: '6 nos',
+      price: 45,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 1,
+      name: 'Fresh Apples',
+      category: 'Fruits',
+      weight: '2 kg',
+      price: 150,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 2,
+      name: 'Organic Tomatoes',
+      category: 'Vegetables',
+      weight: '1 kg',
+      price: 80,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 3,
+      name: 'Fresh Milk',
+      category: 'Dairy',
+      weight: '1 liter',
+      price: 60,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
+    },
+    {
+      id: 4,
+      name: 'Bananas',
+      category: 'Fruits',
+      weight: '6 nos',
+      price: 45,
+      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
     }
   ]
 
   const [cartItems, setCartItems] = useState(initialItems ?? defaultItems)
 
+  // Load cart items from localStorage on component mount
+  useEffect(() => {
+    try {
+      const savedCartItems = localStorage.getItem('cartItems')
+      if (savedCartItems) {
+        const parsedItems = JSON.parse(savedCartItems)
+        setCartItems(parsedItems)
+      }
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error)
+    }
+  }, [])
+
   const deleteItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id))
+    const updatedItems = cartItems.filter(item => item.id !== id)
+    setCartItems(updatedItems)
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems))
   }
 
   const buyItem = (item) => {
@@ -50,12 +161,12 @@ const Cart = ({ initialItems }) => {
   }
 
   const buyAll = () => {
-    const total = cartItems.reduce((sum, item) => sum + item.price, 0)
+    const total = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0)
     alert(`Buying all items for total ₹${total}`)
     // Here you would implement the buy all logic
   }
 
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0)
+  const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0)
 
   return (
     <div className="cart-container">
@@ -75,7 +186,9 @@ const Cart = ({ initialItems }) => {
                 <div className="item-details">
                   <h3>{item.name}</h3>
                   <p className="category">{item.category}</p>
-                  <p className="weight">Weight: {item.weight}</p>
+                  {item.weight && <p className="weight">Weight: {item.weight}</p>}
+                  {item.seller && <p className="seller">Seller: {item.seller}</p>}
+                  {item.quantity && <p className="quantity">Qty: {item.quantity}</p>}
                   <p className="price">₹{item.price}</p>
                 </div>
                 <div className="item-actions">

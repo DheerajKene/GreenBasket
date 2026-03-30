@@ -33,108 +33,13 @@ const initialProducts = [
     price: 120,
     image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd',
     seller: 'Eggcellent'
-  },
-  {
-    id: 1,
-    name: 'Organic Apples',
-    category: 'Fruits',
-    price: 150,
-    image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0',
-    seller: 'FarmVille'
-  },
-  {
-    id: 2,
-    name: 'Fresh Tomatoes',
-    category: 'Vegetables',
-    price: 70,
-    image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce',
-    seller: 'GreenGrocer'
-  },
-  {
-    id: 3,
-    name: 'Dairy Milk',
-    category: 'Milk & Dairy',
-    price: 60,
-    image: 'https://images.unsplash.com/photo-1582719478267-9787e0c3a230',
-    seller: 'DairyHouse'
-  },
-  {
-    id: 4,
-    name: 'Organic Eggs',
-    category: 'Farm Fresh Eggs',
-    price: 120,
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd',
-    seller: 'Eggcellent'
-  },
-  {
-    id: 1,
-    name: 'Organic Apples',
-    category: 'Fruits',
-    price: 150,
-    image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0',
-    seller: 'FarmVille'
-  },
-  {
-    id: 2,
-    name: 'Fresh Tomatoes',
-    category: 'Vegetables',
-    price: 70,
-    image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce',
-    seller: 'GreenGrocer'
-  },
-  {
-    id: 3,
-    name: 'Dairy Milk',
-    category: 'Milk & Dairy',
-    price: 60,
-    image: 'https://images.unsplash.com/photo-1582719478267-9787e0c3a230',
-    seller: 'DairyHouse'
-  },
-  {
-    id: 4,
-    name: 'Organic Eggs',
-    category: 'Farm Fresh Eggs',
-    price: 120,
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd',
-    seller: 'Eggcellent'
-  },
-  {
-    id: 1,
-    name: 'Organic Apples',
-    category: 'Fruits',
-    price: 150,
-    image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0',
-    seller: 'FarmVille'
-  },
-  {
-    id: 2,
-    name: 'Fresh Tomatoes',
-    category: 'Vegetables',
-    price: 70,
-    image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce',
-    seller: 'GreenGrocer'
-  },
-  {
-    id: 3,
-    name: 'Dairy Milk',
-    category: 'Milk & Dairy',
-    price: 60,
-    image: 'https://images.unsplash.com/photo-1582719478267-9787e0c3a230',
-    seller: 'DairyHouse'
-  },
-  {
-    id: 4,
-    name: 'Organic Eggs',
-    category: 'Farm Fresh Eggs',
-    price: 120,
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd',
-    seller: 'Eggcellent'
   }
 ]
 
 const ExploreProducts = () => {
   const [products, setProducts] = useState(initialProducts)
   const [newProduct, setNewProduct] = useState({ name: '', category: '', price: '', image: '' })
+  const [toast, setToast] = useState({ show: false, message: '' })
 
   const handleChange = (e) => {
     setNewProduct({ ...newProduct, [e.target.name]: e.target.value })
@@ -145,7 +50,7 @@ const ExploreProducts = () => {
     if (!newProduct.name || !newProduct.category || !newProduct.price || !newProduct.image) return
     const product = {
       ...newProduct,
-      id: products.length + 1,
+      id: Date.now(),
       price: Number(newProduct.price),
       seller: 'User Seller'
     }
@@ -153,12 +58,34 @@ const ExploreProducts = () => {
     setNewProduct({ name: '', category: '', price: '', image: '' })
   }
 
+  const showToast = (message) => {
+    setToast({ show: true, message })
+    setTimeout(() => {
+      setToast({ show: false, message: '' })
+    }, 3000)
+  }
+
   const handleAddToCart = (product) => {
-    alert(`Added ${product.name} to cart`)
+    try {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
+      const existingItem = cartItems.find(item => item.id === product.id)
+
+      if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1
+      } else {
+        cartItems.push({ ...product, quantity: 1 })
+      }
+
+      localStorage.setItem('cartItems', JSON.stringify(cartItems))
+      showToast(`✓ ${product.name} added to cart`)
+    } catch (error) {
+      console.error('Error adding to cart:', error)
+      showToast('Error adding to cart')
+    }
   }
 
   const handleBuy = (product) => {
-    alert(`Buying ${product.name} for ₹${product.price}`)
+    handleAddToCart(product)
   }
 
   return (
@@ -167,6 +94,12 @@ const ExploreProducts = () => {
         <h2>Explore Products</h2>
         <p>Upload products to sell and browse community listings</p>
       </div>
+
+      {toast.show && (
+        <div className="toast-notification">
+          {toast.message}
+        </div>
+      )}
 
       <form className="product-upload-form" onSubmit={handleAddProduct}>
         <input type="text" name="name" value={newProduct.name} onChange={handleChange} placeholder="Product Name" />

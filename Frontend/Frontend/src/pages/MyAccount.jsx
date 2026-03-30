@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './MyAccount.css'
 
@@ -7,6 +7,50 @@ const MyAccount = () => {
   const [profilePhoto, setProfilePhoto] = useState(null)
   const [previewUrl, setPreviewUrl] = useState('👤')
   const fileInputRef = useRef(null)
+  const [userData, setUserData] = useState({
+    firstName: '',
+    lastName: '',
+    mobile: ''
+  })
+  const [loading, setLoading] = useState(true)
+
+  // Fetch user data on component mount
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem('token')
+        if (!token) {
+          navigate('/login')
+          return
+        }
+
+        const response = await fetch('http://localhost:8100/user/profile', {
+          method: 'GET',
+          headers: {
+            'authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          setUserData({
+            firstName: data.FirstName || '',
+            lastName: data.LastName || '',
+            mobile: data.Mobile || ''
+          })
+        } else if (response.status === 401) {
+          navigate('/login')
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchUserData()
+  }, [])
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0]
@@ -70,18 +114,20 @@ const MyAccount = () => {
 
           {/* User Info Placeholder */}
           <div className="user-info">
-            <div className="info-item">
-              <label>Name:</label>
-              <span>User Name</span>
-            </div>
-            <div className="info-item">
-              <label>Email:</label>
-              <span>user@email.com</span>
-            </div>
-            <div className="info-item">
-              <label>Phone:</label>
-              <span>+1 (555) 123-4567</span>
-            </div>
+            {loading ? (
+              <p>Loading user information...</p>
+            ) : (
+              <>
+                <div className="info-item">
+                  <label>Name:</label>
+                  <span>{userData.firstName} {userData.lastName}</span>
+                </div>
+                <div className="info-item">
+                  <label>Phone:</label>
+                  <span>{userData.mobile}</span>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
