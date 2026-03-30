@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './MyAccount.css'
 
 const MyAccount = () => {
+  const navigate = useNavigate()
   const [profilePhoto, setProfilePhoto] = useState(null)
   const [previewUrl, setPreviewUrl] = useState('👤')
   const fileInputRef = useRef(null)
@@ -31,7 +33,7 @@ const MyAccount = () => {
   }
 
   const handleBuyProducts = () => {
-    alert('Buy Products feature - Coming Soon!')
+    navigate('/explore')
   }
 
   return (
