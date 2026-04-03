@@ -65,19 +65,37 @@ const ExploreProducts = () => {
     }, 3000)
   }
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     try {
-      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
-      const existingItem = cartItems.find(item => item.id === product.id)
-
-      if (existingItem) {
-        existingItem.quantity = (existingItem.quantity || 1) + 1
-      } else {
-        cartItems.push({ ...product, quantity: 1 })
+      const token = localStorage.getItem('token')
+      if (!token) {
+        showToast('Please login to add items to cart')
+        return
       }
 
-      localStorage.setItem('cartItems', JSON.stringify(cartItems))
-      showToast(`✓ ${product.name} added to cart`)
+      const response = await fetch('http://localhost:8100/cart/add', {
+        method: 'POST',
+        headers: {
+          'authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          category: product.category,
+          image: product.image,
+          seller: product.seller,
+          quantity: 1
+        })
+      })
+
+      if (response.ok) {
+        showToast(`✓ ${product.name} added to cart`)
+      } else {
+        const error = await response.json()
+        showToast(error.message || 'Error adding to cart')
+      }
     } catch (error) {
       console.error('Error adding to cart:', error)
       showToast('Error adding to cart')

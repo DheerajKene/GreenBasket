@@ -1,177 +1,128 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Cart.css'
 
 const Cart = ({ initialItems }) => {
-  // Sample cart data - in real app, this would come from state management or API
-  const defaultItems = [
-    {
-      id: 1,
-      name: 'Fresh Apples',
-      category: 'Fruits',
-      weight: '2 kg',
-      price: 150,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 2,
-      name: 'Organic Tomatoes',
-      category: 'Vegetables',
-      weight: '1 kg',
-      price: 80,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 3,
-      name: 'Fresh Milk',
-      category: 'Dairy',
-      weight: '1 liter',
-      price: 60,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 4,
-      name: 'Bananas',
-      category: 'Fruits',
-      weight: '6 nos',
-      price: 45,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 1,
-      name: 'Fresh Apples',
-      category: 'Fruits',
-      weight: '2 kg',
-      price: 150,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 2,
-      name: 'Organic Tomatoes',
-      category: 'Vegetables',
-      weight: '1 kg',
-      price: 80,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 3,
-      name: 'Fresh Milk',
-      category: 'Dairy',
-      weight: '1 liter',
-      price: 60,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 4,
-      name: 'Bananas',
-      category: 'Fruits',
-      weight: '6 nos',
-      price: 45,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 1,
-      name: 'Fresh Apples',
-      category: 'Fruits',
-      weight: '2 kg',
-      price: 150,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 2,
-      name: 'Organic Tomatoes',
-      category: 'Vegetables',
-      weight: '1 kg',
-      price: 80,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 3,
-      name: 'Fresh Milk',
-      category: 'Dairy',
-      weight: '1 liter',
-      price: 60,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 4,
-      name: 'Bananas',
-      category: 'Fruits',
-      weight: '6 nos',
-      price: 45,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 1,
-      name: 'Fresh Apples',
-      category: 'Fruits',
-      weight: '2 kg',
-      price: 150,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 2,
-      name: 'Organic Tomatoes',
-      category: 'Vegetables',
-      weight: '1 kg',
-      price: 80,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 3,
-      name: 'Fresh Milk',
-      category: 'Dairy',
-      weight: '1 liter',
-      price: 60,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    },
-    {
-      id: 4,
-      name: 'Bananas',
-      category: 'Fruits',
-      weight: '6 nos',
-      price: 45,
-      image: 'https://tse3.mm.bing.net/th/id/OIP.kori7Y8NQzmHi4RLlD-T9AHaE5?pid=Api&h=220&P=0'
-    }
-  ]
+  const navigate = useNavigate()
+  const [cartItems, setCartItems] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [toast, setToast] = useState({ show: false, message: '' })
 
-  const [cartItems, setCartItems] = useState(initialItems ?? defaultItems)
-
-  // Load cart items from localStorage on component mount
+  // Fetch cart items from database
   useEffect(() => {
-    try {
-      const savedCartItems = localStorage.getItem('cartItems')
-      if (savedCartItems) {
-        const parsedItems = JSON.parse(savedCartItems)
-        setCartItems(parsedItems)
-      }
-    } catch (error) {
-      console.error('Error loading cart from localStorage:', error)
-    }
+    fetchCartItems()
   }, [])
 
-  const deleteItem = (id) => {
-    const updatedItems = cartItems.filter(item => item.id !== id)
-    setCartItems(updatedItems)
-    localStorage.setItem('cartItems', JSON.stringify(updatedItems))
+  const fetchCartItems = async () => {
+    try {
+      const token = localStorage.getItem('token')
+      if (!token) {
+        navigate('/login')
+        return
+      }
+
+      const response = await fetch('http://localhost:8100/cart/items', {
+        method: 'GET',
+        headers: {
+          'authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setCartItems(data.cartItems)
+      } else if (response.status === 401) {
+        navigate('/login')
+      }
+    } catch (error) {
+      console.error('Error fetching cart items:', error)
+      showToast('Error loading cart')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const showToast = (message) => {
+    setToast({ show: true, message })
+    setTimeout(() => {
+      setToast({ show: false, message: '' })
+    }, 3000)
+  }
+
+  const deleteItem = async (cartItemId) => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await fetch(`http://localhost:8100/cart/remove/${cartItemId}`, {
+        method: 'DELETE',
+        headers: {
+          'authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (response.ok) {
+        setCartItems(cartItems.filter(item => item._id !== cartItemId))
+        showToast('Item removed from cart')
+      } else {
+        showToast('Error removing item')
+      }
+    } catch (error) {
+      console.error('Error deleting item:', error)
+      showToast('Error removing item')
+    }
+  }
+
+  const updateQuantity = async (cartItemId, newQuantity) => {
+    if (newQuantity < 1) return
+
+    try {
+      const token = localStorage.getItem('token')
+      const response = await fetch(`http://localhost:8100/cart/update/${cartItemId}`, {
+        method: 'PUT',
+        headers: {
+          'authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ quantity: newQuantity })
+      })
+
+      if (response.ok) {
+        fetchCartItems()
+        showToast('Quantity updated')
+      } else {
+        showToast('Error updating quantity')
+      }
+    } catch (error) {
+      console.error('Error updating quantity:', error)
+      showToast('Error updating quantity')
+    }
   }
 
   const buyItem = (item) => {
     alert(`Buying ${item.name} for ₹${item.price}`)
-    // Here you would implement the buy logic
   }
 
   const buyAll = () => {
-    const total = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0)
+    const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
     alert(`Buying all items for total ₹${total}`)
-    // Here you would implement the buy all logic
   }
 
-  const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0)
+  const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
 
   return (
     <div className="cart-container">
       <h1>Your Cart</h1>
-      {cartItems.length === 0 ? (
+      
+      {toast.show && (
+        <div className="toast-notification">
+          {toast.message}
+        </div>
+      )}
+
+      {loading ? (
+        <div className="loading">Loading cart...</div>
+      ) : cartItems.length === 0 ? (
         <div className="empty-cart">
           <p>Your cart is empty</p>
         </div>
@@ -179,20 +130,23 @@ const Cart = ({ initialItems }) => {
         <div className="cart-content">
           <div className="cart-items">
             {cartItems.map(item => (
-              <div key={item.id} className="cart-item">
+              <div key={item._id} className="cart-item">
                 <div className="item-image">
                   <img src={item.image} alt={item.name} />
                 </div>
                 <div className="item-details">
                   <h3>{item.name}</h3>
                   <p className="category">{item.category}</p>
-                  {item.weight && <p className="weight">Weight: {item.weight}</p>}
                   {item.seller && <p className="seller">Seller: {item.seller}</p>}
-                  {item.quantity && <p className="quantity">Qty: {item.quantity}</p>}
                   <p className="price">₹{item.price}</p>
                 </div>
+                <div className="item-quantity">
+                  <button onClick={() => updateQuantity(item._id, item.quantity - 1)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => updateQuantity(item._id, item.quantity + 1)}>+</button>
+                </div>
                 <div className="item-actions">
-                  <button className="delete-btn" onClick={() => deleteItem(item.id)}>
+                  <button className="delete-btn" onClick={() => deleteItem(item._id)}>
                     Delete
                   </button>
                   <button className="buy-btn" onClick={() => buyItem(item)}>
@@ -204,9 +158,9 @@ const Cart = ({ initialItems }) => {
           </div>
           <div className="cart-summary">
             <h2>Cart Summary</h2>
-            <div className="summary-details">
-              <p>Total Items: {cartItems.length}</p>
-              <p className="total-price">Total Price: ₹{totalPrice}</p>
+            <div className="summary-total">
+              <span>Total:</span>
+              <span className="price">₹{totalPrice}</span>
             </div>
             <button className="buy-all-btn" onClick={buyAll}>
               Buy All Items
