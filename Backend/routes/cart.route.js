@@ -3,27 +3,14 @@ const CartModel = require('../model/cart.model');
 const cartRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
+const Auth = require("../middleware/auth.middleware");
+
 
 // Middleware to verify token
-const verifyToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
 
-    if (!token) {
-        return res.status(401).json({ message: 'Access token required' });
-    }
-
-    try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        req.userId = decoded.id;
-        next();
-    } catch (error) {
-        return res.status(403).json({ message: 'Invalid or expired token' });
-    }
-};
 
 // Add item to cart
-cartRouter.post('/add', verifyToken, async (req, res) => {
+cartRouter.post('/add', Auth, async (req, res) => {
     const { productId, name, price, quantity, category, image, seller } = req.body || {};
 
     if (!productId || !name || !price || !category || !image) {
@@ -77,7 +64,7 @@ cartRouter.post('/add', verifyToken, async (req, res) => {
 });
 
 // Get user's cart items
-cartRouter.get('/items', verifyToken, async (req, res) => {
+cartRouter.get('/items', Auth, async (req, res) => {
     try {
         const cartItems = await CartModel.find({ userId: req.userId })
             .populate('productId', 'name price category image');
@@ -97,7 +84,7 @@ cartRouter.get('/items', verifyToken, async (req, res) => {
 });
 
 // Remove item from cart
-cartRouter.delete('/remove/:cartItemId', verifyToken, async (req, res) => {
+cartRouter.delete('/remove/:cartItemId', Auth, async (req, res) => {
     const { cartItemId } = req.params;
 
     try {
@@ -128,7 +115,7 @@ cartRouter.delete('/remove/:cartItemId', verifyToken, async (req, res) => {
 });
 
 // Clear entire cart
-cartRouter.delete('/clear', verifyToken, async (req, res) => {
+cartRouter.delete('/clear', Auth, async (req, res) => {
     try {
         await CartModel.deleteMany({ userId: req.userId });
         console.log('Cart cleared for user:', req.userId);
