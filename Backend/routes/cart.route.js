@@ -133,7 +133,7 @@ cartRouter.delete('/clear', Auth, async (req, res) => {
 });
 
 // Update item quantity
-cartRouter.put('/update/:cartItemId', verifyToken, async (req, res) => {
+cartRouter.put('/update/:cartItemId', Auth, async (req, res) => {
     const { cartItemId } = req.params;
     const { quantity } = req.body;
 
