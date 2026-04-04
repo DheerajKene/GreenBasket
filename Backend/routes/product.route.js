@@ -3,27 +3,11 @@ const productRouter = express.Router();
 const ProductModel = require('../model/product.model');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
+const Auth = require("../middleware/auth.middleware");
 
-// Middleware to verify token and extract user ID
-const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (!token) {
-        return res.status(401).json({ message: 'Access token required' });
-    }
-
-    try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        req.userId = decoded.id;
-        next();
-    } catch (error) {
-        return res.status(403).json({ message: 'Invalid or expired token' });
-    }
-};
 
 // Upload a new product by logged-in user
-productRouter.post('/upload', authenticateToken, async (req, res) => {
+productRouter.post('/upload', Auth, async (req, res) => {
     const { img, category, name_of_product, price, product_description } = req.body;
 
     if (!img || !category || !name_of_product || !price || !product_description) {
@@ -57,7 +41,7 @@ productRouter.post('/upload', authenticateToken, async (req, res) => {
 });
 
 // Get all products with seller information
-productRouter.get('/all', async (req, res) => {
+productRouter.get('/all', Auth, async (req, res) => {
     try {
         const products = await ProductModel.find().populate('seller', 'FirstName LastName Mobile');
         res.status(200).json({
@@ -93,7 +77,7 @@ productRouter.get('/user/:userId', async (req, res) => {
 });
 
 // Get products uploaded by logged-in user
-productRouter.get('/my-products', authenticateToken, async (req, res) => {
+productRouter.get('/my-products', Auth, async (req, res) => {
     try {
         const products = await ProductModel.find({ seller: req.userId }).populate('seller', 'FirstName LastName Mobile');
         res.status(200).json({
@@ -134,9 +118,9 @@ productRouter.get('/:productId', async (req, res) => {
 });
 
 // Update product (only by owner)
-productRouter.put('/:productId', authenticateToken, async (req, res) => {
+productRouter.put('/:productId', Auth, async (req, res) => {
     const { productId } = req.params;
-    const { img, category, name_of_product, price, product_description } = req.body || {};
+    const { img, category, name_of_product, price, product_description } = req.body;
 
     try {
         const product = await ProductModel.findById(productId);
@@ -172,7 +156,7 @@ productRouter.put('/:productId', authenticateToken, async (req, res) => {
 });
 
 // Delete product (only by owner)
-productRouter.delete('/:productId', authenticateToken, async (req, res) => {
+productRouter.delete('/:productId', Auth, async (req, res) => {
     const { productId } = req.params;
 
     try {

@@ -2,9 +2,14 @@ const express = require('express');
 const UserModel = require("../model/user.model");
 const userRouter = express.Router();
 const jwt = require("jsonwebtoken");
+const Auth = require("../middleware/auth.middleware");
 const dotenv = require("dotenv").config();
 const bcrypt = require('bcrypt');
 const saltrounds = 5;
+
+userRouter.use(express.json());
+// userRouter.use(Auth());
+
 
 //Registering the user
 userRouter.post("/register", async (req, res)=>{
@@ -83,6 +88,26 @@ userRouter.post("/login", async (req, res)=>{
     } catch (error) {
         console.error("Login error:", error);
         res.status(500).json({ message: "Error logging in user", error: error.message });
+    }
+});
+
+// Get user profile
+userRouter.get("/profile", Auth, async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.userId);
+        
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({
+            FirstName: user.FirstName,
+            LastName: user.LastName,
+            Mobile: user.Mobile
+        });
+    } catch (error) {
+        console.error("Fetch profile error:", error);
+        res.status(500).json({ message: "Error fetching profile", error: error.message });
     }
 });
 

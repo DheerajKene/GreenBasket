@@ -4,6 +4,7 @@ const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 8100;
 const userRouter = require("./routes/user.route");
 const productRouter = require("./routes/product.route");
+const cartRouter = require("./routes/cart.route");
 const connection = require("./config/db");
 
 const App = express();
@@ -11,13 +12,10 @@ App.use(cors());
 App.use(express.json());
 App.use('/user', userRouter);
 App.use('/product', productRouter);
+App.use('/cart', cartRouter);
 
 App.get('/', (req, res)=>{
     res.send('welcomme to the home page...')
-});
-
-App.post("/cart", (req, res)=>{
-    res.send("welcome to the cart page...")
 });
 
 App.listen(PORT, async ()=>{

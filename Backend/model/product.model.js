@@ -29,7 +29,7 @@ const productSchema = new mongoose.Schema({
         ref: 'user',
         required: true
     },
-    createdAt: {
+    created_At: {
     type: Date,
     default: Date.now
   }
