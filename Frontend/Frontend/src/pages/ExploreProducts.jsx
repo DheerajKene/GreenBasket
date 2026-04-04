@@ -97,7 +97,7 @@ const ExploreProducts = () => {
         showToast(error.message || 'Error adding to cart')
       }
     } catch (error) {
-      console.error('Error adding to cart:', error)
+      console.error('Error found adding to cart:', error)
       showToast('Error adding to cart')
     }
   }
