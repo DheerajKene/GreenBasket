@@ -6,12 +6,9 @@ const dotenv = require('dotenv').config();
 const Auth = require("../middleware/auth.middleware");
 
 
-// Middleware to verify token
-
-
 // Add item to cart
 cartRouter.post('/add', Auth, async (req, res) => {
-    const { productId, name, price, quantity, category, image, seller } = req.body || {};
+    const { productId, name, price, quantity, category, image, seller } = req.body;
 
     if (!productId || !name || !price || !category || !image) {
         return res.status(400).json({ message: 'Missing required product fields' });
