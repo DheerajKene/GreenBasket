@@ -20,7 +20,7 @@ App.get('/', (req, res)=>{
 
 App.listen(PORT, async ()=>{
     try {
-        await connection
+        await connection;
         console.log(`server is running on port:${PORT} and mongodb is connected successfully...`)
     } catch (error) {
         console.log(`Error connecting to MongoDB: ${error.message}`);
