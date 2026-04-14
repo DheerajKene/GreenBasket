@@ -163,7 +163,7 @@ const Cart = ({ initialItems }) => {
               <span className="price">₹{totalPrice}</span>
             </div>
             <button className="buy-all-btn" onClick={buyAll}>
-              Buy All Items
+              Buy All products
             </button>
           </div>
         </div>
