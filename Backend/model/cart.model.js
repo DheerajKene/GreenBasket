@@ -40,9 +40,10 @@ const cartItemSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}, {
-  versionKey: false
-});
+}//, {
+//   versionKey: false
+// }
+);
 
 const CartModel = mongoose.model('cart', cartItemSchema);
 module.exports = CartModel;
