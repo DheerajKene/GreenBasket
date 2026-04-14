@@ -146,7 +146,7 @@ cartRouter.put('/update/:cartItemId', Auth, async (req, res) => {
         }
 
         if (cartItem.userId.toString() !== req.userId) {
-            return res.status(403).json({ message: 'You can only update your own cart items' });
+            return res.status(403).json({ message: 'You can only update your own cart items' })
         }
 
         cartItem.quantity = quantity;
