@@ -13,9 +13,7 @@ function App() {
   return (
     <>
     <Allroutes/>
-
-
-      <Navbar />
+    <Navbar />
     <Footer />
     </>
   )

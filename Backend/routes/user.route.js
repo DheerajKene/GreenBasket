@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 const saltrounds = 5;
 
 userRouter.use(express.json());
-// userRouter.use(Auth());
+
 
 
 //Registering the user
