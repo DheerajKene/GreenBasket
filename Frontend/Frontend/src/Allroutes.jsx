@@ -13,27 +13,11 @@ import ExploreProducts from './pages/ExploreProducts'
 import Navbar from './componants/DashNavBar/Navbar'
 
 const Allroutes = () => {
-  // const [showSplash, setShowSplash] = useState(true);
-  // const location = useLocation();
 
-  // useEffect(() => {
-  //   const visited = localStorage.getItem('visited');
-  //   if (visited) {
-  //     setShowSplash(false);
-  //   } else {
-  //     const timer = setTimeout(() => {
-  //       localStorage.setItem('visited', 'true');
-  //       setShowSplash(false);
-  //     }, 8000);
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, []);
 
   return (
     <>
-        {/* {!(location.pathname === '/' && showSplash) && <Navbar />} */}
         <Routes>
-            {/* <Route path='/' element={showSplash ? <Splash /> : <Dashboard />}/> */}
             <Route path='/' element={<Dashboard/>}></Route>
             <Route path='/About' element={<About/>}> </Route>
             <Route path='/contact' element={<Contact/>}></Route>
