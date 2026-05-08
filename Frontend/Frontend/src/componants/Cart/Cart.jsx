@@ -21,7 +21,7 @@ const Cart = ({ initialItems }) => {
         return
       }
 
-      const response = await fetch('http://localhost:8100/cart/items', {
+      const response = await fetch('https://greenbasket-59xb.onrender.com/cart/items', {
         method: 'GET',
         headers: {
           'authorization': `Bearer ${token}`,
@@ -53,7 +53,7 @@ const Cart = ({ initialItems }) => {
   const deleteItem = async (cartItemId) => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8100/cart/remove/${cartItemId}`, {
+      const response = await fetch(`https://greenbasket-59xb.onrender.com/cart/remove/${cartItemId}`, {
         method: 'DELETE',
         headers: {
           'authorization': `Bearer ${token}`,
@@ -78,7 +78,7 @@ const Cart = ({ initialItems }) => {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8100/cart/update/${cartItemId}`, {
+      const response = await fetch(`https://greenbasket-59xb.onrender.com/cart/update/${cartItemId}`, {
         method: 'PUT',
         headers: {
           'authorization': `Bearer ${token}`,

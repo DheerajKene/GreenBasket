@@ -24,7 +24,7 @@ const MyAccount = () => {
           return
         }
 
-        const response = await fetch('http://localhost:8100/user/profile', {
+        const response = await fetch('https://greenbasket-59xb.onrender.com/user/profile', {
           method: 'GET',
           headers: {
             'authorization': `Bearer ${token}`,

@@ -73,7 +73,7 @@ const ExploreProducts = () => {
         return
       }
 
-      const response = await fetch('http://localhost:8100/cart/add', {
+      const response = await fetch('https://greenbasket-59xb.onrender.com/cart/add', {
         method: 'POST',
         headers: {
           'authorization': `Bearer ${token}`,

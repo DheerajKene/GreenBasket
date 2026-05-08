@@ -51,7 +51,7 @@ const Register = () => {
       setIsLoading(true)
 
       try {
-        const response = await fetch('http://localhost:8100/user/register', {
+        const response = await fetch('https://greenbasket-59xb.onrender.com/user/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
