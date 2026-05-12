@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import './NavBar.css'
-import logo from "../DashNavBar/greenbasket.png"
+import logo from "./greenbasket.png"
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false)
