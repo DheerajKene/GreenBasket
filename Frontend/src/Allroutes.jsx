@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import{Routes, Route, useLocation} from 'react-router-dom'
 // import Splash from './componants/Splash/Splash'
-import Dashboard from './components/Dashboard/Dashboard'
+import Dashboard from './components/Dashboard/Dashboard.jsx'
 import Contact from './components/Contact/Contact'
 import Help from './components/Help/Help'
 import Register from './components/Register/Register'
