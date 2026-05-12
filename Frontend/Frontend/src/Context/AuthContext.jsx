@@ -3,17 +3,17 @@ import { createContext, useState } from "react";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({children})=>{
-    const {AuthDetails, setAuthDetails} = useState({
+    const [AuthDetails, setAuthDetails] = useState({
         isAuthenticated:false,
         Mobile:null,
         token:null
     });
 
-    const login = ({Mobile, Token})=>{
+    const login = ({Mobile, token})=>{
         setAuthDetails({
             isAuthenticated:true,
             Mobile,
-            Token
+            token
         });   
 
     }
@@ -21,7 +21,7 @@ export const AuthContextProvider = ({children})=>{
         setAuthDetails({
             isAuthenticated:false,
             Mobile:null,
-            Token:null
+            token:null
         });
     } 
 
