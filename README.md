@@ -3,6 +3,7 @@
 A modern, full-stack e-commerce platform built with **React**, **Node.js**, **Express**, and **MongoDB** that allows users to browse, buy, and sell eco-friendly products with secure authentication and cart management.
 
 ---
+### GreenBasket deployed link: https://greenbasket3.vercel.app/
 
 ## ✨ Features
 
@@ -145,7 +146,7 @@ GreenBasket/
    ```bash
    npm start
    ```
-   Server will run on `http://localhost:8100`
+   Server will run on `https://greenbasket-59xb.onrender.com`
 
 ### Frontend Setup
 
@@ -362,7 +363,7 @@ SECRET_KEY=your_secret_jwt_key        # JWT secret for token signing
 
 ### Frontend
 - API base URL configured in axios instances
-- Default: `http://localhost:8100/api`
+- Default: `https://greenbasket-59xb.onrender.com/api`
 
 ---
 
