@@ -272,7 +272,43 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .about-container {
+    padding: 70px 30px 40px;
+  }
+
+  .about-header {
+    padding: 35px 20px;
+  }
+
+  .about-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .offer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .cta-buttons {
+    gap: 15px;
+  }
+}
+
 @media (max-width: 768px) {
+  .about-container {
+    padding: 60px 15px 30px;
+  }
+
+  .about-header {
+    padding: 30px 15px;
+    margin-bottom: 30px;
+  }
+
   .about-header h1 {
     font-size: 2.2rem;
   }
@@ -290,6 +326,10 @@
     font-size: 1.6rem;
   }
 
+  .about-content p {
+    font-size: 1rem;
+  }
+
   .offer-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -299,12 +339,17 @@
     padding: 20px;
   }
 
+  .offer-item h3 {
+    font-size: 1.1rem;
+  }
+
   .benefits-list {
     margin-top: 20px;
   }
 
   .benefits-list li {
     padding: 15px;
+    margin-bottom: 10px;
   }
 
   .farmer-benefits,
@@ -312,49 +357,115 @@
     padding: 20px;
   }
 
+  .farmer-benefits li,
+  .buyer-benefits li {
+    margin-bottom: 8px;
+  }
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
+    gap: 15px;
   }
 
   .cta-btn {
-    width: 200px;
+    width: 250px;
   }
 }
 
 @media (max-width: 480px) {
   .about-container {
-    padding: 70px 15px 30px;
+    padding: 50px 10px 20px;
   }
 
   .about-header {
-    padding: 30px 15px;
-    margin-bottom: 30px;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
   }
 
   .about-header h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
   }
 
   .tagline {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .about-content section {
     padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
   }
 
   .about-content h2 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .about-content h2::after {
+    width: 50px;
+    height: 2px;
+  }
+
+  .about-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  .offer-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .offer-item {
+    padding: 15px;
+    border-radius: 8px;
   }
 
   .offer-item h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .offer-item p {
+    font-size: 0.85rem;
+  }
+
+  .benefits-list {
+    padding: 0;
+  }
+
+  .benefits-list li {
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+  }
+
+  .farmer-benefits,
+  .buyer-benefits {
+    padding: 15px;
+  }
+
+  .farmer-benefits li,
+  .buyer-benefits li {
+    padding-left: 18px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
   }
 
   .cta-btn {
-    width: 180px;
-    padding: 12px 25px;
-    font-size: 1rem;
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    border-radius: 20px;
   }
 }

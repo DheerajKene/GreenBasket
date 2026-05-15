@@ -159,24 +159,145 @@
   padding: 50px;
 }
 
+@media (max-width: 1024px) {
+  .cart-container {
+    max-width: 100%;
+    margin: 50px 15px 20px;
+    padding: 15px;
+  }
+
+  .cart-content {
+    gap: 20px;
+  }
+
+  .cart-summary {
+    width: 280px;
+  }
+}
+
 @media (max-width: 768px) {
+  .cart-container {
+    max-width: 100%;
+    margin: 50px 10px 20px;
+    padding: 10px;
+  }
+
+  .cart-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
   .cart-content {
     flex-direction: column;
+    gap: 15px;
   }
   
   .cart-summary {
     width: 100%;
     position: static;
+    top: auto;
   }
   
   .cart-item {
     flex-direction: column;
     text-align: center;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .item-image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
   }
   
   .item-actions {
     flex-direction: row;
     justify-content: center;
     margin-top: 10px;
+    gap: 8px;
+  }
+
+  .delete-btn, .buy-btn {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-container {
+    max-width: 100%;
+    margin: 50px 5px 20px;
+    padding: 8px;
+  }
+
+  .cart-container h1 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .cart-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .cart-summary {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .cart-summary h2 {
+    font-size: 1rem;
+  }
+
+  .summary-details p {
+    font-size: 0.9rem;
+    margin: 8px 0;
+  }
+
+  .total-price {
+    font-size: 1.1rem;
+  }
+  
+  .cart-item {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .item-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 8px;
+  }
+
+  .item-details h3 {
+    font-size: 0.9rem;
+  }
+
+  .category, .weight {
+    font-size: 0.8rem;
+  }
+
+  .price {
+    font-size: 0.95rem;
+  }
+  
+  .item-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .delete-btn, .buy-btn {
+    width: 100%;
+    padding: 8px;
+    font-size: 10px;
+  }
+
+  .buy-all-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 15px;
   }
 }

@@ -143,6 +143,24 @@
 
 /* Responsive */
 
+@media (max-width: 1024px) {
+  #MainDiv {
+    height: 350px;
+  }
+
+  .subDiv div {
+    width: 200px;
+  }
+
+  .subDiv div ul input {
+    width: 100%;
+  }
+
+  .subDiv div ul button {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
@@ -151,5 +169,74 @@
 
   .footer-section h3 {
     border-bottom: none;
+  }
+
+  #MainDiv {
+    height: auto;
+    padding: 20px;
+  }
+
+  .subDiv {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .subDiv div {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+
+  .subDiv div ul {
+    margin-top: 15px;
+  }
+
+  .subDiv div ul input,
+  .subDiv div ul button {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .sub2Div img {
+    width: 150px;
+    height: 80px;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #MainDiv {
+    height: auto;
+    padding: 15px;
+  }
+
+  .subDiv div ul li a {
+    font-size: 11px;
+  }
+
+  .subDiv div ul input,
+  .subDiv div ul button {
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    max-width: 100%;
+  }
+
+  .subDiv div ul button {
+    margin-top: 8px;
+  }
+
+  .sub2Div img {
+    width: 120px;
+    height: 60px;
+  }
+
+  .sub2Div h6 {
+    font-size: 12px;
+  }
+
+  .footer-section p {
+    font-size: 13px;
   }
 } 
