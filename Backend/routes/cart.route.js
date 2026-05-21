@@ -81,7 +81,7 @@ cartRouter.get('/items',  async (req, res) => {
 });
 
 // Remove item from cart
-cartRouter.delete('/remove/:cartItemId', Auth, async (req, res) => {
+cartRouter.delete('/remove/:cartItemId', async (req, res) => {
     const { cartItemId } = req.params;
 
     try {
@@ -130,7 +130,7 @@ cartRouter.delete('/clear', Auth, async (req, res) => {
 });
 
 // Update item quantity
-cartRouter.put('/update/:cartItemId', Auth, async (req, res) => {
+cartRouter.put('/update/:cartItemId', async (req, res) => {
     const { cartItemId } = req.params;
     const { quantity } = req.body;
 
