@@ -8,7 +8,7 @@ function Hero() {
       <div className="hero-left">
 
         <h1>
-          Buy & Sell <span>Fresh Products</span>
+          Buy & Sell <span>Fresh Product</span>
         </h1>
 
         <h2>Directly from Farmers</h2>
