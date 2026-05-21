@@ -77,7 +77,7 @@ productRouter.get('/user/:userId', async (req, res) => {
 });
 
 // Get products uploaded by logged-in user
-productRouter.get('/my-products', Auth, async (req, res) => {
+productRouter.get('/my-products', async (req, res) => {
     try {
         const products = await ProductModel.find({ seller: req.userId }).populate('seller', 'FirstName LastName Mobile');
         res.status(200).json({
@@ -118,7 +118,7 @@ productRouter.get('/:productId', async (req, res) => {
 });
 
 // Update product (only by owner)
-productRouter.put('/:productId', Auth, async (req, res) => {
+productRouter.put('/:productId', async (req, res) => {
     const { productId } = req.params;
     const { img, category, name_of_product, price, product_description } = req.body;
 
@@ -156,7 +156,7 @@ productRouter.put('/:productId', Auth, async (req, res) => {
 });
 
 // Delete product (only by owner)
-productRouter.delete('/:productId', Auth, async (req, res) => {
+productRouter.delete('/:productId', async (req, res) => {
     const { productId } = req.params;
 
     try {

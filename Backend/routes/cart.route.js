@@ -7,7 +7,7 @@ const Auth = require("../middleware/auth.middleware");
 
 
 // Add item to cart
-cartRouter.post('/add', Auth, async (req, res) => {
+cartRouter.post('/add',  async (req, res) => {
     const { productId, name, price, quantity, category, image, seller } = req.body;
 
     if (!productId || !name || !price || !category || !image) {
@@ -61,7 +61,7 @@ cartRouter.post('/add', Auth, async (req, res) => {
 });
 
 // Get user's cart items
-cartRouter.get('/items', Auth, async (req, res) => {
+cartRouter.get('/items',  async (req, res) => {
     try {
         const cartItems = await CartModel.find({ userId: req.userId })
             .populate('productId', 'name price category image');
