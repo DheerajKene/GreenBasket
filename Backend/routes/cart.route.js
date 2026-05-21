@@ -3,7 +3,7 @@ const CartModel = require('../model/cart.model');
 const cartRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
-const Auth = require("../middleware/auth.middleware");
+// const Auth = require("../middleware/auth.middleware");
 
 
 // Add item to cart
@@ -112,7 +112,7 @@ cartRouter.delete('/remove/:cartItemId', async (req, res) => {
 });
 
 // Clear entire cart
-cartRouter.delete('/clear', Auth, async (req, res) => {
+cartRouter.delete('/clear', async (req, res) => {
     try {
         await CartModel.deleteMany({ userId: req.userId });
         console.log('Cart cleared for user:', req.userId);
