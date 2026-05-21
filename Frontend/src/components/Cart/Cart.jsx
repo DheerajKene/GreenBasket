@@ -15,11 +15,11 @@ const Cart = ({ initialItems }) => {
 
   const fetchCartItems = async () => {
     try {
-      const token = localStorage.getItem('token')
-      if (!token) {
-        navigate('/login')
-        return
-      }
+      // const token = localStorage.getItem('token')
+      // if (!token) {
+      //   navigate('/login')
+      //   return
+      // }
 
       const response = await fetch('https://greenbasket-59xb.onrender.com/cart/items', {
         method: 'GET',
